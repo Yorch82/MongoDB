@@ -171,7 +171,7 @@ db.users.deleteMany({age: {$gt: 30}})
 
 -- Seleccione el número total de publicaciones que tienen más de un comentario
 
-db.posts.find({comments: {$size: 2}}).count()
+db.posts.find({ $or:[{comments: {$not:{$size:0}}, comments: {$not:{$size:1}}}]}).count()
 
 -- Seleccione la última publicación creada
 
@@ -179,10 +179,8 @@ db.posts.find().sort({date: -1}).limit(1)
 
 -- Selecciona 5 publicaciones y que sean las últimas creadas
 
-db.posts.find().sort({age: -1}).limit(5)
+db.posts.find().sort({date: -1}).limit(5)
 
 -- Elimina todas las publicaciones que tengan más de un comentario
 
-
-
-    
+db.posts.deleteMany({$or:[{comments: {$not:{$size:0}}, comments: {$not:{$size:1}}}]})
