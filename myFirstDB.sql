@@ -175,11 +175,11 @@ db.posts.find({ $or:[{comments: {$not:{$size:0}}, comments: {$not:{$size:1}}}]})
 
 -- Seleccione la última publicación creada
 
-db.posts.find().sort({date: -1}).limit(1)
+db.posts.find().sort({_id:-1}).limit(1)
 
 -- Selecciona 5 publicaciones y que sean las últimas creadas
 
-db.posts.find().sort({date: -1}).limit(5)
+db.posts.find().sort({_id:-1}).limit(5)
 
 -- Elimina todas las publicaciones que tengan más de un comentario
 
